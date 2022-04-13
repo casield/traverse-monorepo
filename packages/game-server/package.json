@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "my-app",
+  "name": "server",
   "version": "1.0.0",
-  "description": "npm init template for bootstrapping an empty Colyseus project",
+  "description": "Game Server",
   "main": "lib/index.js",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/index.ts",

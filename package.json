@@ -1,35 +1,37 @@
 {
-  "name": "hackaton",
-  "version": "1.0.0",
-  "main": "index.ts",
-  "license": "MIT",
-  "workspaces": [
-    "game-server",
-    "app",
-    "api"
-  ],
-  "private": true,
-  "dependencies": {
-    "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.6.2",
-    "typescript": "^4.6.3"
-  },
-  "scripts": {
-    "format:check": 
-   "prettier --check .",
-   "format:write": "prettier --write .",
-   "lint:check": "eslint .",
-   "lint:fix": "eslint --fix ."
-  },
-  "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.19.0",
-    "@typescript-eslint/parser": "^5.19.0",
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.2.0",
-    "ts-node": "^10.7.0"
-  }
+    "name": "hackaton",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "license": "MIT",
+    "workspaces": [
+        "packages/game-server",
+        "packages/app",
+        "packages/api"
+    ],
+    "private": true,
+    "dependencies": {
+        "eslint-config-prettier": "^8.5.0",
+        "prettier": "^2.6.2",
+        "typescript": "^4.6.3"
+    },
+    "scripts": {
+        "format:check": "prettier --check .",
+        "format:write": "prettier --write .",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "app": "yarn workspace app dev",
+        "server": "yarn workspace server start"
+    },
+    "devDependencies": {
+        "@tsconfig/node16": "^1.0.2",
+        "@typescript-eslint/eslint-plugin": "^5.19.0",
+        "@typescript-eslint/parser": "^5.19.0",
+        "eslint": "^7.32.0",
+        "eslint-config-standard": "^16.0.3",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-promise": "^5.2.0",
+        "ts-node": "^10.7.0"
+    }
 }
