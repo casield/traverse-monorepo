@@ -1,13 +1,18 @@
+import dynamic from 'next/dynamic'
+const TraverseMap = dynamic(() => import('../src/components/Map'), {
+    ssr: false,
+})
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useClient } from '../src/providers/ClientProvider'
-import styles from '../styles/Home.module.css'
+import { useClient } from 'providers/ClientProvider'
+import { useEffect, useState } from 'react'
 
 const Home: NextPage = () => {
     const client = useClient()
+
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <title>Hackify</title>
                 <meta
@@ -25,6 +30,7 @@ const Home: NextPage = () => {
             >
                 Connect
             </button>
+            {<TraverseMap />}
         </div>
     )
 }

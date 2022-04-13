@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import 'tailwindcss/tailwind.css'
 import type { AppProps } from 'next/app'
 import { ClientContext } from '../src/providers/ClientProvider'
 import * as Colyseus from 'colyseus.js'
