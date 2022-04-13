@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useClient } from '../src/providers/ServerProvider'
+import { useClient } from '../src/providers/ClientProvider'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -16,11 +16,11 @@ const Home: NextPage = () => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            {client.room && <div>Connected to room {client.room.name}</div>}
             <button
                 onClick={async () => {
-                    const rooms = await client.client?.joinOrCreate('my_room')
-                    console.log('Rooms', rooms)
+                    if (!client.connectToRoom) return
+                    client.connectToRoom()
                 }}
             >
                 Connect

@@ -3,6 +3,8 @@ import * as Colyseus from 'colyseus.js' // not necessary if included via <script
 
 export type ClientContext = {
     client?: Colyseus.Client
+    room?: Colyseus.Room
+    connectToRoom?: () => void
 }
 
 export const ClientContext = createContext<ClientContext>({})
