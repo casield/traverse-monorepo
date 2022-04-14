@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import { Wrapper, Status } from '@googlemaps/react-wrapper'
+import { useClient } from 'providers/ClientProvider'
 
 const render = (status: Status) => {
     console.log(status)
@@ -9,17 +10,15 @@ const render = (status: Status) => {
 const TraverseMap: FC = () => {
     const ref = useRef<HTMLHeadingElement>(null)
     const [loaded, setLoaded] = useState(false)
-    const [map, setMap] = useState<google.maps.Map>()
+    const client = useClient()
     useEffect(() => {
-        if (!ref.current) return
+        if (!ref.current || !client || !client.setMap) return
         const map = new window.google.maps.Map(ref.current, {
             center: { lat: 19.351034980369246, lng: -99.17647082054216 },
             zoom: 13,
         })
 
-        setMap(map)
-
-        console.log('Map', map)
+        client.setMap(map)
 
         navigator.geolocation.getCurrentPosition(function (position) {
             console.log('Latitude is :', position.coords.latitude)
@@ -42,11 +41,11 @@ const TraverseMap: FC = () => {
             <button
                 onClick={() => {
                     //19.372836070357412, -99.21689304560884
-                    map?.setCenter({
+                    client.map?.setCenter({
                         lat: 19.372836070357412,
                         lng: -99.21689304560884,
                     })
-                    map?.setZoom(15)
+                    client.map?.setZoom(15)
                 }}
             >
                 Change place
