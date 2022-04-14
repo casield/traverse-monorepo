@@ -1,8 +1,8 @@
 import { Schema, Context, type, MapSchema } from '@colyseus/schema'
 
 export class V2 extends Schema {
-    @type('float32') lat: number = 0
-    @type('float32') lng: number = 0
+    @type('float64') lat: number = 0
+    @type('float64') lng: number = 0
 }
 
 export class Player extends Schema {

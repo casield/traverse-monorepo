@@ -7,6 +7,8 @@ export class WorldRoom extends Room<WorldState> {
 
         this.onMessage('changePos', (client, message) => {
             console.log(message)
+            this.state.players.get(client.sessionId).position.lat = message.lat
+            this.state.players.get(client.sessionId).position.lng = message.lng
         })
     }
 

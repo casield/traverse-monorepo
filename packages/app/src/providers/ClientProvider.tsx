@@ -9,6 +9,7 @@ import {
 } from 'react'
 import * as Colyseus from 'colyseus.js' // not necessary if included via <script> tag.
 import { onConnectRoom } from 'logic/onConnectRoom'
+import { WorldState } from 'schema/WorldState'
 
 export type ClientContext = {
     client?: Colyseus.Client
@@ -21,14 +22,14 @@ export type ClientContext = {
 export const ClientContext = createContext<ClientContext>({})
 export const useClient = () => useContext(ClientContext)
 
-const client = new Colyseus.Client('ws://localhost:2567')
+const client = new Colyseus.Client('wss://ee-hs1.colyseus.dev:443')
 
 export const ClientProvider: FC<{ children: ReactElement }> = (props) => {
-    const [room, setRoom] = useState<Colyseus.Room>()
+    const [room, setRoom] = useState<Colyseus.Room<WorldState>>()
     const [map, setMapState] = useState<google.maps.Map>()
     const connectToRoom = useCallback(async () => {
         if (!map) throw Error('No map detected')
-        const newRoom = await client.joinOrCreate('world_room')
+        const newRoom = await client.joinOrCreate<WorldState>('world_room')
         setRoom(newRoom)
         onConnectRoom(newRoom, map)
     }, [room, map])
